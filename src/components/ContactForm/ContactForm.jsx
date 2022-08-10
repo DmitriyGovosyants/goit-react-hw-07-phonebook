@@ -6,7 +6,7 @@ import {
   ContactInput,
   ContactLabel,
   SubmitBtn,
-} from './ContactForm.styled.js';
+} from 'components/ContactForm/ContactForm.styled';
 import {
   useAddContactMutation,
   useGetContactsQuery,
