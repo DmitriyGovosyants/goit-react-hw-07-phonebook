@@ -1,14 +1,16 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import * as contactsActions from 'redux/contacts/contactsActions';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Label, SubmitBtn, FormikForm, Input } from './ContactForm.styled';
-import { useAddContactMutation } from 'redux/contacts/contactsApi';
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from 'redux/contacts/contactsApi';
+import { toast } from 'react-toastify';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export const ContactForm = () => {
-  // const dispatch = useDispatch();
-  // const items = useSelector(({ contacts }) => contacts.items);
-  const [updatePost, result] = useAddContactMutation();
+  const [updatePost, { isLoading }] = useAddContactMutation();
+  const { data: contacts } = useGetContactsQuery();
 
   const initialValues = {
     name: '',
@@ -16,12 +18,12 @@ export const ContactForm = () => {
   };
 
   const handleSubmit = ({ name, phone }, { resetForm }) => {
-    // if (items.find(el => el.name === name)) {
-    //   return alert(`${name} is already in contacts`);
-    // }
-    // dispatch(contactsActions.addContact(name, phone));
-    updatePost({ name, phone });
+    if (contacts.find(e => e.name === name)) {
+      return toast(`${name} is already in contacts`);
+    }
 
+    updatePost({ name, phone });
+    toast(`${name} is added to contacts`);
     resetForm();
   };
 
@@ -60,7 +62,18 @@ export const ContactForm = () => {
         <Label htmlFor="phone">Phone</Label>
         <ErrorMessage name="phone" />
         <Input type="tel" name="phone" />
-        <SubmitBtn type="submit">Add contact</SubmitBtn>
+        <SubmitBtn type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <ThreeCircles
+              height="30"
+              width="30"
+              color="#ffffff"
+              ariaLabel="three-circles-rotating"
+            />
+          ) : (
+            'Add contact'
+          )}
+        </SubmitBtn>
       </FormikForm>
     </Formik>
   );

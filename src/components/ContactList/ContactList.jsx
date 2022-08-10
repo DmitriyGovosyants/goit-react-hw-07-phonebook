@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux';
 import { ContactItem } from 'components';
 import { useGetContactsQuery } from 'redux/contacts/contactsApi';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export const ContactList = () => {
-  const { data, error, isLoading } = useGetContactsQuery({
+  const {
+    data: contacts,
+    isLoading,
+    isError,
+  } = useGetContactsQuery({
     refetchOnMountOrArgChange: true,
   });
 
@@ -11,18 +16,28 @@ export const ContactList = () => {
     rootReducer.filter.toLowerCase()
   );
 
-  const filteredContacts = data.filter(contact =>
+  const filteredContacts = contacts?.filter(contact =>
     contact.name.toLowerCase().includes(filter)
   );
 
-  if (isLoading) return <div>Loading...</div>;
-  if (!data) return <div>Missing data!</div>;
+  if (isLoading)
+    return (
+      <ThreeCircles
+        height="30"
+        width="30"
+        color="#red"
+        ariaLabel="three-circles-rotating"
+      />
+    );
 
-  return (
-    <ul>
-      {filteredContacts.map(({ name, phone, id }) => {
-        return <ContactItem key={id} id={id} name={name} phone={phone} />;
-      })}
-    </ul>
-  );
+  if (isError) return <div>Error query!</div>;
+
+  if (contacts)
+    return (
+      <ul>
+        {filteredContacts.map(({ name, phone, id }) => {
+          return <ContactItem key={id} id={id} name={name} phone={phone} />;
+        })}
+      </ul>
+    );
 };

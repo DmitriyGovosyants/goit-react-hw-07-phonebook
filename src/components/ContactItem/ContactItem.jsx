@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { RiDeleteBack2Line } from 'react-icons/ri';
+import { RiDeleteBin2Line } from 'react-icons/ri';
 import { BiUser } from 'react-icons/bi';
 import { useState } from 'react';
 import {
@@ -13,21 +13,29 @@ import {
 } from './ContactItem.styled';
 import { Modal } from 'components';
 import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
+import { toast } from 'react-toastify';
 
 export const ContactItem = ({ name, phone, id }) => {
-  const [deleteContact, result] = useDeleteContactMutation();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const [showModal, setShowModal] = useState(false);
+
+  const handleDelete = async (id, name) => {
+    await deleteContact(id);
+    setShowModal(s => !s);
+    toast(`Contact ${name} deleted`);
+  };
 
   return (
     <Contact>
+      <BiUser size={30} style={{ flex: '0 0 30px' }} />
       <Info>
-        <BiUser size={20} style={{ flex: '0 0 20px' }} />
         <InfoText>
-          {name}: {phone}
+          <b>{name}</b>
         </InfoText>
+        <InfoText>{phone}</InfoText>
       </Info>
       <DeleteBtn type="button" onClick={() => setShowModal(s => !s)}>
-        <RiDeleteBack2Line size={30} />
+        <RiDeleteBin2Line size={30} />
       </DeleteBtn>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
@@ -40,14 +48,15 @@ export const ContactItem = ({ name, phone, id }) => {
               autoFocus
               onClick={() => setShowModal(s => !s)}
             >
-              NO
+              no
             </ApprovalBtn>
             <ApprovalBtn
               type="button"
-              onClick={() => deleteContact(id)}
+              onClick={() => handleDelete(id, name)}
+              disabled={isLoading}
               lastEl={true}
             >
-              YES
+              {isLoading ? 'deleting...' : 'delete'}
             </ApprovalBtn>
           </ApprovalBtnWrapper>
         </Modal>

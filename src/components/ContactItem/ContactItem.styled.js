@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Contact = styled.li`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 
   font-weight: 600;
@@ -18,7 +18,8 @@ export const Contact = styled.li`
 
 export const Info = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 `
 
 export const InfoText = styled.p`
@@ -27,7 +28,7 @@ export const InfoText = styled.p`
 `
 
 export const DeleteBtn = styled.button`
-  margin-left: ${p => p.theme.spacing(2)};
+  margin-left: auto;
 
   font-size: ${p => p.theme.fontSizes.small};
   color: ${p => p.theme.colors.btnBgc};
@@ -57,6 +58,7 @@ export const ApprovalBtn = styled.button`
 
   font-weight: 700;
   color: ${p => p.theme.colors.textColorMain};
+  text-transform: uppercase;
 
   background-color: ${p => p.theme.colors.btnBgc};
   border-radius: 10px;

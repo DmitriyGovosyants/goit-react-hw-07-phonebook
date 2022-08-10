@@ -35,9 +35,10 @@ export const Input = styled(Field)`
 `
 
 export const SubmitBtn = styled.button`
-  padding: ${p => p.theme.spacing(3)};
+  padding: ${p => p.theme.spacing(2)};
 
   font-weight: 700;
+  line-height: 2;
   color: ${p => p.theme.colors.textColorMain};
 
   background-color: ${p => p.theme.colors.btnBgc};
