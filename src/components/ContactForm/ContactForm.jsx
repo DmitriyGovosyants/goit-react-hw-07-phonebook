@@ -63,7 +63,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <ContactFormStyled onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <ContactLabel htmlFor="name">Name</ContactLabel>
       <ContactInput {...register('name')} />
       <p>{errors.name?.message}</p>
@@ -84,6 +84,6 @@ export const ContactForm = () => {
           'Add contact'
         )}
       </SubmitBtn>
-    </ContactFormStyled>
+    </form>
   );
 };
