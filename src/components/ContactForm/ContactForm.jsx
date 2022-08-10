@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import {
@@ -43,6 +43,7 @@ export const ContactForm = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -65,14 +66,22 @@ export const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="name">Name</label>
-      <input {...register('name')} />
+      <Controller
+        name="name"
+        control={control}
+        render={({ field }) => <ContactInput {...field} />}
+      />
       <p>{errors.name?.message}</p>
 
       <label htmlFor="phone">Phone</label>
-      <input {...register('phone')} />
+      <Controller
+        name="phone"
+        control={control}
+        render={({ field }) => <ContactInput {...field} />}
+      />
       <p>{errors.phone?.message}</p>
 
-      <SubmitBtn type="submit" disabled={isLoading}>
+      <button type="submit" disabled={isLoading}>
         {isLoading ? (
           <ThreeCircles
             height="30"
@@ -83,7 +92,7 @@ export const ContactForm = () => {
         ) : (
           'Add contact'
         )}
-      </SubmitBtn>
+      </button>
     </form>
   );
 };
