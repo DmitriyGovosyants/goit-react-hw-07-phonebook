@@ -1,23 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux';
-import * as contactsActions from 'redux/contacts/contactsActions';
+// import { useDispatch, useSelector } from 'react-redux';
+// import * as contactsActions from 'redux/contacts/contactsActions';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Label, SubmitBtn, FormikForm, Input } from './contactForm.styled';
+import { Label, SubmitBtn, FormikForm, Input } from './ContactForm.styled';
+import { useAddContactMutation } from 'redux/contacts/contactsApi';
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
-  const items = useSelector(({ contacts }) => contacts.items);
+  // const dispatch = useDispatch();
+  // const items = useSelector(({ contacts }) => contacts.items);
+  const [updatePost, result] = useAddContactMutation();
 
   const initialValues = {
     name: '',
-    number: '',
+    phone: '',
   };
 
-  const handleSubmit = ({ name, number }, { resetForm }) => {
-    if (items.find(el => el.name === name)) {
-      return alert(`${name} is already in contacts`);
-    }
-    dispatch(contactsActions.addContact(name, number));
+  const handleSubmit = ({ name, phone }, { resetForm }) => {
+    // if (items.find(el => el.name === name)) {
+    //   return alert(`${name} is already in contacts`);
+    // }
+    // dispatch(contactsActions.addContact(name, phone));
+    updatePost({ name, phone });
 
     resetForm();
   };
@@ -36,7 +39,7 @@ export const ContactForm = () => {
       .min(2)
       .max(30)
       .required('Required'),
-    number: Yup.string()
+    phone: Yup.string()
       .matches(
         phoneRegExp,
         'Phone number must be digits, contain 6 digits, can contain spaces, dashes, parentheses and can start with +'
@@ -54,9 +57,9 @@ export const ContactForm = () => {
         <Label htmlFor="name">Name</Label>
         <ErrorMessage name="name" />
         <Input type="text" name="name" />
-        <Label htmlFor="number">Number</Label>
-        <ErrorMessage name="number" />
-        <Input type="tel" name="number" />
+        <Label htmlFor="phone">Phone</Label>
+        <ErrorMessage name="phone" />
+        <Input type="tel" name="phone" />
         <SubmitBtn type="submit">Add contact</SubmitBtn>
       </FormikForm>
     </Formik>

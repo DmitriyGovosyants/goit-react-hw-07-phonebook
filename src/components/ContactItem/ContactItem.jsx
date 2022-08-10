@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { BiUser } from 'react-icons/bi';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import * as contactsActions from 'redux/contacts/contactsActions';
 import {
   Contact,
   Info,
@@ -14,9 +12,10 @@ import {
   ApprovalBtn,
 } from './ContactItem.styled';
 import { Modal } from 'components';
+import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
 
-export const ContactItem = ({ name, number, id }) => {
-  const dispatch = useDispatch();
+export const ContactItem = ({ name, phone, id }) => {
+  const [deleteContact, result] = useDeleteContactMutation();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -24,7 +23,7 @@ export const ContactItem = ({ name, number, id }) => {
       <Info>
         <BiUser size={20} style={{ flex: '0 0 20px' }} />
         <InfoText>
-          {name}: {number}
+          {name}: {phone}
         </InfoText>
       </Info>
       <DeleteBtn type="button" onClick={() => setShowModal(s => !s)}>
@@ -45,7 +44,7 @@ export const ContactItem = ({ name, number, id }) => {
             </ApprovalBtn>
             <ApprovalBtn
               type="button"
-              onClick={() => dispatch(contactsActions.deleteContact(id))}
+              onClick={() => deleteContact(id)}
               lastEl={true}
             >
               YES
@@ -59,6 +58,6 @@ export const ContactItem = ({ name, number, id }) => {
 
 ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
