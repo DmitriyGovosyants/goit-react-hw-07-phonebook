@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Form = styled.form`
+export const ContactFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,14 +11,14 @@ export const Form = styled.form`
   border-radius: 20px;
 `
 
-export const Label = styled.label`
+export const ContactLabel = styled.label`
   margin-bottom: ${p => p.theme.spacing(2)};
 
   font-weight: 800;
   color: ${p => p.theme.colors.textColorSecond};
 `
 
-export const Input = styled.input`
+export const ContactInput = styled.input`
   min-width: 300px;
   margin-bottom: ${p => p.theme.spacing(5)};
   padding: ${p => p.theme.spacing(2)};
