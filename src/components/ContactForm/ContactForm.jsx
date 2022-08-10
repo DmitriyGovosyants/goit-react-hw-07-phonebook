@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Form, SubmitBtn, Label, Input } from './ContactForm.styled';
+import { Form, Input, Label, SubmitBtn } from './ContactForm.styled';
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -49,11 +49,11 @@ export const ContactForm = () => {
 
   const onSubmit = ({ name, phone }) => {
     if (contacts.find(e => e.name === name)) {
-      return toast(`${name} is already in contacts`);
+      return toast.warn(`${name} is already in contacts`);
     }
 
     updatePost({ name, phone });
-    toast(`${name} is added to contacts`);
+    toast.info(`${name} is added to contacts`);
     reset();
   };
 

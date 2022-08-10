@@ -22,7 +22,7 @@ export const ContactItem = ({ name, phone, id }) => {
   const handleDelete = async (id, name) => {
     await deleteContact(id);
     setShowModal(s => !s);
-    toast(`Contact ${name} deleted`);
+    toast.info(`Contact ${name} deleted`);
   };
 
   return (
