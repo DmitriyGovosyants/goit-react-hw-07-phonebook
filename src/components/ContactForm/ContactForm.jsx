@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import {
@@ -6,7 +6,7 @@ import {
   ContactInput,
   ContactLabel,
   SubmitBtn,
-} from 'components/ContactForm/ContactForm.styled';
+} from './ContactForm.styled.js';
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -43,7 +43,6 @@ export const ContactForm = () => {
     register,
     handleSubmit,
     reset,
-    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -66,19 +65,11 @@ export const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="name">Name</label>
-      <Controller
-        name="name"
-        control={control}
-        render={({ field }) => <ContactInput {...field} />}
-      />
+      <input {...register('name')} />
       <p>{errors.name?.message}</p>
 
       <label htmlFor="phone">Phone</label>
-      <Controller
-        name="phone"
-        control={control}
-        render={({ field }) => <ContactInput {...field} />}
-      />
+      <input {...register('phone')} />
       <p>{errors.phone?.message}</p>
 
       <button type="submit" disabled={isLoading}>
