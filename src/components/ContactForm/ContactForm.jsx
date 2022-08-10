@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Form, Input, Label, SubmitBtn } from './ContactForm.styled';
+// import { Form, Input, Label, SubmitBtn } from './ContactForm.styled';
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -58,16 +58,16 @@ export const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Label htmlFor="name">Name</Label>
-      <Input {...register('name')} />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="name">Name</label>
+      <input {...register('name')} />
       <p>{errors.name?.message}</p>
 
-      <Label htmlFor="phone">Phone</Label>
-      <Input {...register('phone')} />
+      <label htmlFor="phone">Phone</label>
+      <input {...register('phone')} />
       <p>{errors.phone?.message}</p>
 
-      <SubmitBtn type="submit" disabled={isLoading}>
+      <button type="submit" disabled={isLoading}>
         {isLoading ? (
           <ThreeCircles
             height="30"
@@ -78,7 +78,7 @@ export const ContactForm = () => {
         ) : (
           'Add contact'
         )}
-      </SubmitBtn>
-    </Form>
+      </button>
+    </form>
   );
 };
