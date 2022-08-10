@@ -6,7 +6,7 @@ import {
   ContactInput,
   ContactLabel,
   SubmitBtn,
-} from './ContactForm.styled';
+} from './ContactForm.styled.js';
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -64,15 +64,15 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ContactLabel htmlFor="name">Name</ContactLabel>
+      <label htmlFor="name">Name</label>
       <input {...register('name')} />
       <p>{errors.name?.message}</p>
 
-      <ContactLabel htmlFor="phone">Phone</ContactLabel>
+      <label htmlFor="phone">Phone</label>
       <input {...register('phone')} />
       <p>{errors.phone?.message}</p>
 
-      <button type="submit" disabled={isLoading}>
+      <SubmitBtn type="submit" disabled={isLoading}>
         {isLoading ? (
           <ThreeCircles
             height="30"
@@ -83,7 +83,7 @@ export const ContactForm = () => {
         ) : (
           'Add contact'
         )}
-      </button>
+      </SubmitBtn>
     </form>
   );
 };
