@@ -4,7 +4,7 @@ import { FilterContainer, Label, Input } from './Filter.styled';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(({ rootReducer }) => rootReducer.filter);
+  const filter = useSelector(({ filter }) => filter);
 
   return (
     <FilterContainer>

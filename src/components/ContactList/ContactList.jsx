@@ -12,9 +12,7 @@ export const ContactList = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  const filter = useSelector(({ rootReducer }) =>
-    rootReducer.filter.toLowerCase()
-  );
+  const filter = useSelector(({ filter }) => filter.toLowerCase());
 
   const filteredContacts = contacts?.filter(contact =>
     contact.name.toLowerCase().includes(filter)
