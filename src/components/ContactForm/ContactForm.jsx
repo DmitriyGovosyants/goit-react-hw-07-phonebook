@@ -1,3 +1,9 @@
+import {
+  ContactFormStyled,
+  ContactLabel,
+  ContactInput,
+  SubmitBtn,
+} from './ContactForm.styled';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -7,59 +13,60 @@ import {
 } from 'redux/contacts/contactsApi';
 import { toast } from 'react-toastify';
 import { ThreeCircles } from 'react-loader-spinner';
-import styled from '@emotion/styled';
 
-const ContactFormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: ${p => p.theme.spacing(10)};
-  padding: ${p => p.theme.spacing(2)};
+// import styled from '@emotion/styled';
 
-  background-color: ${p => p.theme.colors.secondBgc};
-  border-radius: 20px;
-`;
+// const ContactFormStyled = styled.form`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   margin-bottom: ${p => p.theme.spacing(10)};
+//   padding: ${p => p.theme.spacing(2)};
 
-const ContactLabel = styled.label`
-  margin-bottom: ${p => p.theme.spacing(2)};
+//   background-color: ${p => p.theme.colors.secondBgc};
+//   border-radius: 20px;
+// `;
 
-  font-weight: 800;
-  color: ${p => p.theme.colors.textColorSecond};
-`;
+// const ContactLabel = styled.label`
+//   margin-bottom: ${p => p.theme.spacing(2)};
 
-const ContactInput = styled.input`
-  min-width: 300px;
-  margin-bottom: ${p => p.theme.spacing(5)};
-  padding: ${p => p.theme.spacing(2)};
+//   font-weight: 800;
+//   color: ${p => p.theme.colors.textColorSecond};
+// `;
 
-  text-align: center;
+// const ContactInput = styled.input`
+//   min-width: 300px;
+//   margin-bottom: ${p => p.theme.spacing(5)};
+//   padding: ${p => p.theme.spacing(2)};
 
-  border: none;
-  outline: none;
+//   text-align: center;
 
-  :focus {
-    box-shadow: ${p => p.theme.shadow.formFocusShadow};
-  }
-`;
+//   border: none;
+//   outline: none;
 
-const SubmitBtn = styled.button`
-  padding: ${p => p.theme.spacing(2)};
+//   :focus {
+//     box-shadow: ${p => p.theme.shadow.formFocusShadow};
+//   }
+// `;
 
-  font-weight: 700;
-  line-height: 2;
-  color: ${p => p.theme.colors.textColorMain};
+// const SubmitBtn = styled.button`
+//   padding: ${p => p.theme.spacing(2)};
 
-  background-color: ${p => p.theme.colors.btnBgc};
-  border-radius: 10px;
-  outline: none;
+//   font-weight: 700;
+//   line-height: 2;
+//   color: ${p => p.theme.colors.textColorMain};
 
-  :focus {
-    box-shadow: ${p => p.theme.shadow.formFocusShadow};
-  }
-  :hover {
-    background-color: ${p => p.theme.colors.btnBgcAccent};
-  }
-`;
+//   background-color: ${p => p.theme.colors.btnBgc};
+//   border-radius: 10px;
+//   outline: none;
+
+//   :focus {
+//     box-shadow: ${p => p.theme.shadow.formFocusShadow};
+//   }
+//   :hover {
+//     background-color: ${p => p.theme.colors.btnBgcAccent};
+//   }
+// `;
 
 const nameRegExp = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
 const phoneRegExp =
