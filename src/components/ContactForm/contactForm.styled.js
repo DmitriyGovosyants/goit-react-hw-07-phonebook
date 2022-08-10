@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import { Field, Form } from 'formik';
 
-export const FormikForm = styled(Form)`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +18,7 @@ export const Label = styled.label`
   color: ${p => p.theme.colors.textColorSecond};
 `
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   min-width: 300px;
   margin-bottom: ${p => p.theme.spacing(5)};
   padding: ${p => p.theme.spacing(2)};
