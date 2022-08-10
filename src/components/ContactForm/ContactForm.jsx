@@ -64,15 +64,15 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="name">Name</label>
+      <ContactLabel htmlFor="name">Name</ContactLabel>
       <input {...register('name')} />
       <p>{errors.name?.message}</p>
 
-      <label htmlFor="phone">Phone</label>
+      <ContactLabel htmlFor="phone">Phone</ContactLabel>
       <input {...register('phone')} />
       <p>{errors.phone?.message}</p>
 
-      <SubmitBtn type="submit" disabled={isLoading}>
+      <button type="submit" disabled={isLoading}>
         {isLoading ? (
           <ThreeCircles
             height="30"
@@ -83,7 +83,7 @@ export const ContactForm = () => {
         ) : (
           'Add contact'
         )}
-      </SubmitBtn>
+      </button>
     </form>
   );
 };
