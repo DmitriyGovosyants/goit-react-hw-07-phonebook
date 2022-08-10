@@ -13,7 +13,7 @@ export const store = configureStore({
     [contactsApi.reducerPath]: contactsApi.reducer,
     rootReducer,
   },
-  devTools: process.env.NODE_ENV === 'development',
+  // devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware(),
     contactsApi.middleware,
