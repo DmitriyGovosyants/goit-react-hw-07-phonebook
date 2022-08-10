@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Contact = styled.li`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
 
   font-weight: 600;
@@ -23,8 +22,10 @@ export const Info = styled.div`
 `
 
 export const InfoText = styled.p`
+  
   padding: ${p => p.theme.spacing(2)};
   font-size: ${p => p.theme.fontSizes.medium};
+  font-weight: ${p => p.fwBig ? 700 : 400};
 `
 
 export const DeleteBtn = styled.button`

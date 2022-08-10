@@ -29,9 +29,7 @@ export const ContactItem = ({ name, phone, id }) => {
     <Contact>
       <BiUser size={30} style={{ flex: '0 0 30px' }} />
       <Info>
-        <InfoText>
-          <b>{name}</b>
-        </InfoText>
+        <InfoText fwBig={true}>{name}</InfoText>
         <InfoText>{phone}</InfoText>
       </Info>
       <DeleteBtn type="button" onClick={() => setShowModal(s => !s)}>
