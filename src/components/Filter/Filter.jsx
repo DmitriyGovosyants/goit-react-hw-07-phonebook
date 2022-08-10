@@ -1,4 +1,4 @@
-import * as contactsActions from 'redux/contacts/contactsActions';
+import { filterContacts } from 'redux/filter/filter-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { FilterContainer, Label, Input } from './Filter.styled';
 
@@ -14,9 +14,7 @@ export const Filter = () => {
         id="filter"
         name="filter"
         value={filter}
-        onChange={e =>
-          dispatch(contactsActions.filterContacts(e.currentTarget.value))
-        }
+        onChange={e => dispatch(filterContacts(e.currentTarget.value))}
       />
     </FilterContainer>
   );
