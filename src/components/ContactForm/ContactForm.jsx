@@ -64,12 +64,12 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ContactLabel htmlFor="name">Name</ContactLabel>
-      <ContactInput {...register('name')} />
+      <label htmlFor="name">Name</label>
+      <input {...register('name')} />
       <p>{errors.name?.message}</p>
 
-      <ContactLabel htmlFor="phone">Phone</ContactLabel>
-      <ContactInput {...register('phone')} />
+      <label htmlFor="phone">Phone</label>
+      <input {...register('phone')} />
       <p>{errors.phone?.message}</p>
 
       <SubmitBtn type="submit" disabled={isLoading}>
