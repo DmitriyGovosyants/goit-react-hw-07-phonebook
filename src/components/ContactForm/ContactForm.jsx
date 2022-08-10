@@ -1,12 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-// import {
-//   ContactFormStyled,
-//   ContactInput,
-//   ContactLabel,
-//   SubmitBtn,
-// } from './ContactForm.styled.js';
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -15,7 +9,7 @@ import { toast } from 'react-toastify';
 import { ThreeCircles } from 'react-loader-spinner';
 import styled from '@emotion/styled';
 
-export const ContactFormStyled = styled.form`
+const ContactFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,14 +20,14 @@ export const ContactFormStyled = styled.form`
   border-radius: 20px;
 `;
 
-export const ContactLabel = styled.label`
+const ContactLabel = styled.label`
   margin-bottom: ${p => p.theme.spacing(2)};
 
   font-weight: 800;
   color: ${p => p.theme.colors.textColorSecond};
 `;
 
-export const ContactInput = styled.input`
+const ContactInput = styled.input`
   min-width: 300px;
   margin-bottom: ${p => p.theme.spacing(5)};
   padding: ${p => p.theme.spacing(2)};
@@ -48,7 +42,7 @@ export const ContactInput = styled.input`
   }
 `;
 
-export const SubmitBtn = styled.button`
+const SubmitBtn = styled.button`
   padding: ${p => p.theme.spacing(2)};
 
   font-weight: 700;
